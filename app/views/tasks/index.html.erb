@@ -1,0 +1,22 @@
+<%= link_to 'Home', root_path %>
+
+<h3>Create a new Task</h3>
+
+<%= form_with model: @task, url: (@task.persisted? ? tasks_path : task_path(@task)) do |form| %>
+  <%= form.label :title %>
+  <%= form.text_field :title %>
+
+  <%= form.label :description %>
+  <%= form.text_area :description %>
+
+  <%= form.label :priority %>
+  <%= form.select :priority, ['High', 'Medium', 'Low'] %>
+
+  <%= form.label :status %>
+  <%= form.select :status, ['Pending', 'In Progress', 'Completed'] %>
+
+  <%= form.label :due_date %>
+  <%= form.date_field :due_date %>
+
+  <%= form.submit @task.persisted? ? 'Create Task' : 'Update Task' %>
+<% end %>

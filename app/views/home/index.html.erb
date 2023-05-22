@@ -1,0 +1,21 @@
+<h1 style="text-align:center">Tastify</h1>
+
+<div style="display:flex; justify-content:center">
+    <%= link_to 'Create a new task', tasks_path %>
+</div>
+
+<h1>Your Current Tasks</h1>
+<% if @tasks.any? %>
+    <% @tasks.each do |task| %>
+        <div style="display:flex; flex-direction:column">
+            <h3><%= task.title %></h3>
+            <p><%= task.description %></p>
+            <p><b>Priority: </b><%= task.priority || 'Low'   %></p>
+            <p><b>Status: </b><%= task.status || 'Pending' %></p>
+            <p><b>Due date: </b><%= task.due_date.to_formatted_s(:long)%>
+            <%= link_to 'Edit', task_path(task.id)%>
+        </div>
+    <% end %>
+<% else %>
+    <p>No tasks at this moment.</p>
+<% end %>
